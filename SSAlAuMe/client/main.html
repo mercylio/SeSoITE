@@ -1,0 +1,151 @@
+<head>
+  <title>SSAlAuMe - Chat and Share your thoughts!</title>
+  <!-- Clean up some things / remove unnecessary stuff-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+  <link rel="stylesheet" href="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
+  <link rel="stylesheet" href="style.css" />
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'/>
+ 
+
+</head>
+<body>
+
+<!-- Clean up some things / remove unnecessary stuff-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+<script type="text/javascript" src="main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+
+</body>
+
+<!--TEMPLATES-->
+<template name="ApplicationLayout">
+  {{> yield "navbar"}}
+  {{> yield "msgContainer"}}
+</template>
+
+<template name="navbar">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <h1>SSAlAuMe - Gossip Chat and more!</h1> {{> loginButtons}} {{> honeypot }}
+    </div>
+  </nav>
+</template>
+
+<template name="msgContainer">
+<!-- MAX 10-20 messages per page? -->
+  <div class="main">
+    <div class="container">
+      <div class="row">
+        {{> yield "inputMessages"}}
+        {{> yield "messages"}}
+          <!--
+          <label id="msg-author">Anoymous</label>
+          <li id="msg-text">Have you felt it?</li>
+          <li id="msg-tags">TAG</li>
+          <li id="msg-time">TIME</li>
+          --> 
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="inputMessages">
+  <form class="form">
+    <div class="col-xs-8 col-md-10">
+      <input id="commentbox" type="text" placeholder="Share your thoughts!">
+      <input id="tagsbox" type="text" placeholder="input your tags separated by a comma ','">
+      <!--<input id="tags" type="text" value="html,input,tag" data-role="tagsinput"> -->
+    </div>
+    <div class="col-xs-4 col-md-2">
+      <button type="submit" id="buttonpost">Post</button>
+      <!--<button type="button" id="buttonpost">post</button>-->  
+    </div>      
+  </form>
+</template>
+
+<template name="notAllowedToPost">
+  <form class="form">
+    <div class="col-xs-8 col-md-10">
+      <input id="not-allowed" type="text" placeholder="Sign up / sign in to share your thoughts" disabled>
+    </div>
+    <div class="col-xs-4 col-md-2">
+      <button class="btn btn-warning" id="btnnotloggedin" data-dismiss="modal" disabled>post</button>
+    </div>     
+  </form>
+</template>
+
+<template name="messages">
+  <!-- FILTER MESSAGES functionality -->
+  <form class="form">
+    <div class="col-xs-8 col-md-10">
+      <!-- Selector from https://silviomoreto.github.io/bootstrap-select/methods/-->
+      <div class="row">
+        <div class="col-lg-6">
+        <div class="input-group">
+          <div class="input-group-btn">
+           <select  id="filterSelect" class="selectpicker show-tick">
+            <option class="option-custom" value="author">By author</option>
+            <option class="option-custom" value="tag">By tag</option>
+            </select>
+          </div><!-- /btn-group -->
+          <input type="text" id="searchinput" placeholder="Filter parameter" class="form-control" aria-label="...">
+        </div><!-- /input-group -->
+      </div>
+      <button id="goFilter" class="btn btn-primary" type="submit">Filter</button>
+      <button id="cancelFilter" class="btn btn-default" type="submit">Clear</button>
+    </div>
+  </div>
+  </form>
+
+  <!-- MESSAGES -->
+  <br>
+  <div class="container">
+  <ul class="comments" id="comments">
+    <!-- for each element of the "Collection.find()" object -->
+    {{#each messages}}  
+    <!-- <span class="badge"> {{author}} - {{time}} </span> -->
+    <div class="row">
+    <span id="author" class="badge"> {{author}} </span>
+    <span class="badge">{{time}} </span>
+    <span class="label label-primary">TAGS: {{tags}}</span>
+    <li id="msg-text"> {{text}} </li>
+    </div>
+    {{/each}}
+  </ul>
+  </div>
+
+  <!-- PAGINATION -->
+<!--   <nav>
+    <ul class="pager">
+      <li class="{{prevPageClass}}">
+        <a id="prevPage" href="{{prevPage}}">
+          <span aria-hidden="true">&larr;</span> Previous
+        </a>
+      </li>
+      <li class="{{nextPageClass}}">
+        <a id="nextPage" href="{{nextPage}}">
+          Next <span aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+    </ul>
+  </nav> -->
+</template>
+
+
+<template name="messagesNav">
+  <!-- put the navigation here
+
+first case: homepage
+  1(highlighted) | 2 | 3 | 4 | OLDER
+
+second case: other pages but not the last
+  NEWER(highlighted) | CURRENT | next 1,2,3 available pages | OLDER
+
+third case: last page
+
+  NEWER | previous 1,2,3 available pages | LAST(highlighted)
+  -->
+</template>
+

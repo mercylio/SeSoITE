@@ -1,0 +1,93 @@
+body{
+    padding-top: 60px;
+}
+
+html, body {
+	font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+	border-left: 2px solid #00f28f;
+	font-size: 48px;
+	font-weight: 400;
+	padding-left: 20px;
+}
+
+.main {
+	margin-top: 80px;
+}
+
+form input {
+	background: #f0f0f0;
+	border: none;
+	border-left: 2px solid #fff;
+	font-size: 36px;
+	padding: 20px;
+	width: 100%;
+
+	transition: background 2s, border-left 2s;
+}
+
+form input:focus { /* will only apply to the form when it's focused*/
+	background: #fff;
+	border-left: 2px solid #000;
+	box-shadow: none;
+	outline: none;
+}
+
+#buttonpost {
+	background: transparent;
+	border: 2px solid #000;
+	color: #00f28f;
+	cursor: pointer;
+	font-size: 36px;
+	padding: 20px 24px; /*first number of the pair, applies to top & bottom; the second to left-right*/
+	transition: background 2s, border-left 2s;
+}
+
+#buttonpost:hover {
+	background: #00f28f;
+	color: #fff;
+}
+
+#btnnotloggedin {
+	background: transparent;
+	border: 2px solid #000;
+	color: #ff0000;
+	cursor: not-allowed;
+	font-size: 36px;
+	padding: 20px 24px;
+	transition: background 2s, border-left 2s;
+}
+
+#tagsbox {
+	background: #66CCFF;
+	border: none;
+	border-left: 2px solid #fff;
+	font-size: 18px;
+	padding: 10px;
+	width: 100%;
+
+	transition: background 2s, border-left 2s;
+}
+
+.comments {
+	margin-top: 40px;
+	list-style: none;
+	padding-left: 10px;
+}
+
+li {
+	padding-left: 20px;
+	border-left: 2px solid #000;
+	font-size: 36px;
+	margin: 0 0 36px;
+}
+
+.option-custom {
+	
+	font-size: 18px;
+}
+#author {
+	background-color: #FF8000;
+}
