@@ -9,7 +9,7 @@ Router.configure({
 });
 
 Router.route('/:page?', function() {
-	if()
+	
 });
 
 
