@@ -1,0 +1,63 @@
+<head>
+  <title>libApp</title>
+</head>
+
+<body>
+  
+</body>
+
+
+<!--TEMPLATES-->
+
+<template name="ApplicationLayout">
+  {{> yield "navbar"}}
+  {{> yield "mainContainer"}}
+  {{> yield "footer"}}
+</template>
+
+<template name="navbar">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <h1>UNIBZ Library System!</h1>
+        {{> loginButtons}}
+    </div>
+  </nav>
+</template>
+
+<template name="noAccess">
+  <form class="form">
+          <div class="col-xs-8 col-md-10">
+            <input id="not-allowed" type="text" placeholder="Sign up / sign in to share your thoughts" disabled>
+          </div>
+          <div class="col-xs-4 col-md-2">
+            <button class="btn btn-warning" id="btnnotloggedin" data-dismiss="modal" disabled>post</button>
+          </div>     
+        </form>
+</template>
+
+<template name="libResourcesNav">
+  <nav>
+    <ul class="pager">
+      <li class="{{prevPageClass}}">
+        <a id="prevPage" href="{{prevPage}}">
+          <span aria-hidden="true">&larr;</span> Previous
+        </a>
+      </li>
+      <li class="{{nextPageClass}}">
+        <a id="nextPage" href="{{nextPage}}">
+          Next <span aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</template>
+
+<template name="footer">
+  <h2>Contact Details</h2>
+  <ul>
+    <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
+    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
+    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
+    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
+  </ul>
+</template>
