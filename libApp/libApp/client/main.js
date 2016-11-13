@@ -8,6 +8,12 @@ Router.configure({
 	layputTemplate: 'ApplicationLayout'
 });
 
+Router.route('/nav', function () {
+  this.render('navbar', {
+    to: "navbar"
+  });
+});
+
 Router.route('/:page?', function() {
   if(Meteor.user()){//if logged in user
     this.render('navbar', {to: "navbar"});

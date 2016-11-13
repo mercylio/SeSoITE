@@ -20,7 +20,11 @@
     <div class="container">
       <h1>UNIBZ Library System!</h1>
         {{> loginButtons}}
+<<<<<<< Updated upstream
         <button id="goFilter" class="btn btn-default" type="button">Filter</button>
+=======
+        <button id="goFilter" class="btn btn-default" type="button"></button>
+>>>>>>> Stashed changes
     </div>
   </nav>
 </template>
@@ -31,13 +35,14 @@
             <input id="not-allowed" type="text" placeholder="Sign up / sign in to share your thoughts" disabled>
           </div>
           <div class="col-xs-4 col-md-2">
-            <button class="btn btn-warning" id="btnnotloggedin" data-dismiss="modal" disabled>post</button>
+            <button class="btn btn-warning" id="btnnotloggedin" data-dismiss="modal" disabled>login first</button>
           </div>     
         </form>
 </template>
 
 <template name="books">
   <ul class="comments" id="comments">
+<<<<<<< Updated upstream
     <!-- for each element of the "Collection.find()" object -->
     {{#each books}}  
     <span class="badge"> {{author}} - {{time}} </span><!-- PLEASE SEPARTE in 2 independent parts-->
@@ -59,6 +64,10 @@
       </li>
     </ul>
   </nav>
+=======
+    
+  </ul>
+>>>>>>> Stashed changes
 </template>
 
 <template name="libResourcesNav">
