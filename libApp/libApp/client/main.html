@@ -32,6 +32,22 @@
   </nav>
 </template>
 
+<template name="booksContainer">
+  <div class="main">
+    <div class="container">
+      <div class="row">
+        {{> yield "inputBookList"}}
+        {{> yield "books"}}
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="inputBookList">
+  <form class="form"> 
+  </form>
+</template>
+
 <template name="books">
   <div class="container">
     <h2>{{book_alt}}</h2>
