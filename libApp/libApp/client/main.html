@@ -20,6 +20,7 @@
     <div class="container">
       <h1>UNIBZ Library System!</h1>
         {{> loginButtons}}
+        <button id="goFilter" class="btn btn-default" type="button">Filter</button>
     </div>
   </nav>
 </template>
@@ -33,6 +34,31 @@
             <button class="btn btn-warning" id="btnnotloggedin" data-dismiss="modal" disabled>post</button>
           </div>     
         </form>
+</template>
+
+<template name="books">
+  <ul class="comments" id="comments">
+    <!-- for each element of the "Collection.find()" object -->
+    {{#each books}}  
+    <span class="badge"> {{author}} - {{time}} </span><!-- PLEASE SEPARTE in 2 independent parts-->
+    <span class="label label-primary">TAGS: {{tags}}</span>
+    <li id="book-text"> {{text}} </li>
+    {{/each}}
+  </ul>
+  <nav>
+    <ul class="pager">
+      <li class="{{prevPageClass}}">
+        <a id="prevPage" href="{{prevPage}}">
+          <span aria-hidden="true">&larr;</span> Previous
+        </a>
+      </li>
+      <li class="{{nextPageClass}}">
+        <a id="nextPage" href="{{nextPage}}">
+          Next <span aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
 </template>
 
 <template name="libResourcesNav">

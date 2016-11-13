@@ -9,7 +9,16 @@ Router.configure({
 });
 
 Router.route('/:page?', function() {
-	
+  if(Meteor.user()){//if logged in user
+    this.render('navbar', {to: "navbar"});
+    this.render('mainContainer', {to: "mainContainer"});
+    this.render('footer', {to: "footer"});
+  }
+  else {//if anonymous
+    this.render('navbar', {to: "navbar"});
+    this.render('mainContainer', {to: "mainContainer"});
+    this.render('footer', {to: "footer"});//not allowed
+  }
 });
 
 
