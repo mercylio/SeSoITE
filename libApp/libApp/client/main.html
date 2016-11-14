@@ -3,7 +3,9 @@
 </head>
 
 <body>
-  
+<h1>Welcome to the Library!</h1>
+  {{> loginButtons}}
+  {{> search}}
 </body>
 
 
@@ -32,6 +34,32 @@
   </nav>
 </template>
 
+<template name="search">
+  <form id="search">
+      <input type="text" id="searchValue" placeholder="Search for Resources.">
+      <button>Search</button>     
+  </form>
+
+  <hr/>
+  <h2>Books</h2>
+  <ul>
+    {{#each books}}
+    <li>{{value}}</li>
+    {{/each}}
+  </ul>
+</template>
+
+<template name="noAccess">
+  <form class="form">
+    <div class="col-xs-8 col-md-10">
+      <input id="not-allowed" type="text" placeholder="Sign up / sign in to access" disabled>
+    </div>
+    <div class="col-xs-4 col-md-2">
+      <button class="btn btn-warning" id="btnnotloggedin" data-dismiss="modal" disabled>Search on Login</button>
+    </div>     
+  </form>
+</template>
+
 <template name="booksContainer">
   <div class="main">
     <div class="container">
@@ -49,10 +77,12 @@
 </template>
 
 <template name="books">
-  <div class="container">
+  <!-- <div class="container">
     <h2>{{book_alt}}</h2>
     <a href="/books"><img class="single-book" src="/{{book_img}}"/></a>
-  </div>
+  </div> -->
+  <h3>Here are your books:</h3>
+  {{ books }}
 </template>
 
 <template name="footer">
