@@ -41,13 +41,14 @@
   </form>
 
   <hr/>
-  <h2>Books</h2>
-  {{#each arrayify result }}
+  <h2>Book Search Results</h2>
+  {{#each books }}
   <ul>
     <li>{{title}}</li>
-    <li>{{date}}</li>
+    <li>{{author}}</li>
+    <!--TEMPLATES<li>{{date}}</li>
     <li>{{creator}}</li>
-    <li>{{sourceId}}</li>
+    <li>{{sourceId}}</li>-->
   </ul>
   {{/each}}
 </template>
