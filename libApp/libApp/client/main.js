@@ -43,17 +43,26 @@ Template.books.rendered = function() {
     ]);
   };
 
+
 Template.books.helpers({
   books:function(){
     return Session.get('books');
   }
 });
 
+Template.search.result = function () {
+  return Session.get('serverSimpleResponse');
+};
+
 
 //SEARCH
 Template.search.events({
   "submit #search": function (e) {
       e.preventDefault();
+      Meteor.call('getCurrentTime',function(err, response) {
+        //console.log(response);
+        Session.set('serverSimpleResponse', response);
+      });
       Session.set("searchValue", $("#searchValue").val());
     }
 });
@@ -62,19 +71,15 @@ Template.search.helpers({
   books: function() {
     Meteor.subscribe("search", Session.get("searchValue"));
     if (Session.get("searchValue")) {
-        return Books.find({}, { sort: [["score", "desc"]] });
+        return Books.find({}, { sort: [["score", "desc"]] });  
       } else {
         return Books.find({});
       }
   }
 });
 
-function seed() {
-  if(!Books.findOne({})) {
-    Books.insert({title: "To Kill a Mockingbird", value: "To Kill a Mockingbird", author: "Harper Lee"});
-      Books.insert({title: "1984", value:  "1984", author: "George Orwell"});
-      Books.insert({title: "The Lord of the Rings", value: "The Lord of the Rings", author: "J. R. R. Tolkien"});
-      Books.insert({title: "The Catcher in the Rye", value: "The Catcher in the Rye", author: "J. D. Salinger"});
-      Books.insert({title: "The Great Gatsby", value: "The Great Gatsby", author: "F. Scott Fitzgerald"});
-  }
-}
+Handlebars.registerHelper('arrayify',function(obj){
+    result = [];
+    for (var key in obj) result.push(obj[key]);
+    return result;
+});

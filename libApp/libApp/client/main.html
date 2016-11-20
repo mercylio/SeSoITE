@@ -42,11 +42,14 @@
 
   <hr/>
   <h2>Books</h2>
+  {{#each arrayify result }}
   <ul>
-    {{#each books}}
-    <li>{{value}}</li>
-    {{/each}}
+    <li>{{title}}</li>
+    <li>{{date}}</li>
+    <li>{{creator}}</li>
+    <li>{{sourceId}}</li>
   </ul>
+  {{/each}}
 </template>
 
 <template name="noAccess">

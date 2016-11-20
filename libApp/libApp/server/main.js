@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 Books = new Mongo.Collection("books");
 
+
 Meteor.startup( function() {
   // code to run on server at startup
 
@@ -38,5 +39,18 @@ Meteor.publish("search", function(searchValue) {
 	return cursor;
 });
 
+Meteor.methods({
+	getCurrentTime: function () {
+		console.log('on server, getCurrentTime called');
+		var convertAsyncToSync  = Meteor.wrapAsync( HTTP.get ),
+        result = convertAsyncToSync( 'https://api-na.hosted.exlibrisgroup.com/primo/v1/pnxs?vid=UNIBZ&scope=All&q=any,contains,Hello&apikey=XXXX', {} );
+        console.log(result.data.docs[0]);
+        return result.data.docs;
+	}
+});
 
 
+//Meteor.http.call("GET","https://api-na.hosted.exlibrisgroup.com/primo/v1/pnxs?vid=UNIBZ&scope=All&q=any,contains,Hello&apikey=XXXXX",function(error,result){
+//        console.log(result.data.docs[0]);
+//        //return result.data.docs[0];
+//    });
