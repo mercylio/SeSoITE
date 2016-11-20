@@ -19,7 +19,7 @@
 <template name="welcome">
   <div class="container">
     <div class="jumbotron">
-      <h1>Welcome to the Library!</h1>
+      <h1>Welcome to the Unibz Library!</h1>
       <a href="/images" class="btn btn-info">libApp Meteor</a>
     </div>
   </div>
@@ -36,11 +36,13 @@
 
 <template name="search">
   <form id="search">
-      <input type="text" id="searchValue" placeholder="Search for Resources.">
-      <button>Search</button>     
+      <input type="text" id="searchValue" placeholder="Search for Resources."><br>
+      <button>Search</button> <br>
+      <a href="">Advanced Search</a>    
   </form>
 
   <hr/>
+  <div class="container">
   <h2>Book Search Results</h2>
   {{#each books }}
   <ul>
@@ -51,6 +53,33 @@
     <li>{{sourceId}}</li>-->
   </ul>
   {{/each}}
+  </div>
+</template>
+
+<template name="advancedsearch">
+  <form id="search">
+      <input type="text" id="searchValue" placeholder="Any">
+      <input type="text" id="searchValue" placeholder="Search for Resources."><br>
+      <input type="text" id="searchValue" placeholder="Any">
+      <input type="text" id="searchValue" placeholder="Search for Resources.">
+      <input type="text" id="searchValue" placeholder="Any">
+      <input type="text" id="searchValue" placeholder="Search for Resources."><br>
+      <button>Search</button> <button>Clear</button><br>   
+  </form>
+
+  <hr/>
+  <div class="container">
+  <h2>Book Search Results</h2>
+  {{#each books }}
+  <ul>
+    <li>{{title}}</li>
+    <li>{{author}}</li>
+    <!--TEMPLATES<li>{{date}}</li>
+    <li>{{creator}}</li>
+    <li>{{sourceId}}</li>-->
+  </ul>
+  {{/each}}
+  </div>
 </template>
 
 <template name="noAccess">
