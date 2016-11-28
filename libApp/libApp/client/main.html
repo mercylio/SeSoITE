@@ -42,14 +42,24 @@
 
   <hr/>
   <h2>Books</h2>
+  <table border="1">
+    <tr>
+      <th>Title</th>
+      <th>Date</th>
+      <th>Author(s)</th>
+      <th>Source</th>
+      <th>Link</th>
+    </tr>  
   {{#each arrayify result }}
-  <ul>
-    <li>{{title}}</li>
-    <li>{{date}}</li>
-    <li>{{creator}}</li>
-    <li>{{sourceId}}</li>
-  </ul>
+   <tr>
+      <td>{{title}}</td>
+      <td>{{date}}</td>
+      <td>{{creator}}</td>
+      <td>{{@TYPE}}</td>
+      <td>{{delivery.availability}}</td>
+    </tr>
   {{/each}}
+  </table>
 </template>
 
 <template name="noAccess">

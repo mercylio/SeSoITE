@@ -40,10 +40,11 @@ Meteor.publish("search", function(searchValue) {
 });
 
 Meteor.methods({
-	getCurrentTime: function () {
-		console.log('on server, getCurrentTime called');
+	getCurrentTime: function (searchValue) {
+		console.log("Searching for ", searchValue);
+		//console.log('on server, getCurrentTime called');
 		var convertAsyncToSync  = Meteor.wrapAsync( HTTP.get ),
-        result = convertAsyncToSync( 'https://api-na.hosted.exlibrisgroup.com/primo/v1/pnxs?vid=UNIBZ&scope=All&q=any,contains,Hello&apikey=XXXX', {} );
+        result = convertAsyncToSync( 'https://api-na.hosted.exlibrisgroup.com/primo/v1/pnxs?vid=UNIBZ&scope=All&q=any,contains,' + searchValue +'&apikey=XXXX', {} );
         console.log(result.data.docs[0]);
         return result.data.docs;
 	}
