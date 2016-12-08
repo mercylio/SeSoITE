@@ -68,6 +68,7 @@
   </form>
 
   <hr/>
+<<<<<<< HEAD
   <div class="container">
   <h2>Book Search Results</h2>
   {{#each books }}
@@ -80,6 +81,27 @@
   </ul>
   {{/each}}
   </div>
+=======
+  <h2>Books</h2>
+  <table border="1">
+    <tr>
+      <th>Title</th>
+      <th>Date</th>
+      <th>Author(s)</th>
+      <th>Source</th>
+      <th>Link</th>
+    </tr>  
+  {{#each arrayify result }}
+   <tr>
+      <td>{{title}}</td>
+      <td>{{date}}</td>
+      <td>{{creator}}</td>
+      <td>{{@TYPE}}</td>
+      <td>{{delivery.availability}}</td>
+    </tr>
+  {{/each}}
+  </table>
+>>>>>>> origin/master
 </template>
 
 <template name="noAccess">
