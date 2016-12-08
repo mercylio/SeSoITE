@@ -42,17 +42,35 @@
   </form>
 
   <hr/>
-  <div class="container">
-  <h2>Book Search Results</h2>
+ <div class="container">
+<!--   <h2>Book Search Results</h2>
   {{#each books }}
   <ul>
     <li>{{title}}</li>
     <li>{{author}}</li>
-    <!--TEMPLATES<li>{{date}}</li>
-    <li>{{creator}}</li>
-    <li>{{sourceId}}</li>-->
   </ul>
   {{/each}}
+  </div> -->
+
+  <h2>Books</h2>
+  <table border="1">
+    <tr>
+      <th>Title <i class="fa fa-sort sort_title"></i></th>
+      <th>Date</th>
+      <th>Author(s)</th>
+      <th>Source</th>
+      <th>Link</th>
+    </tr>  
+  {{#each arrayify result }}
+   <tr>
+      <td>{{title}}</td>
+      <td>{{date}}</td>
+      <td>{{creator}}</td>
+      <td>{{@TYPE}}</td>
+      <td>{{delivery.availability}}</td>
+    </tr>
+  {{/each}}
+  </table>
   </div>
 </template>
 
@@ -70,18 +88,15 @@
   <hr/>
 
   <div class="container">
-  <h2>Book Search Results</h2>
+<!--   <h2>Book Search Results</h2>
   {{#each books }}
   <ul>
     <li>{{title}}</li>
     <li>{{author}}</li>
-    <!--TEMPLATES<li>{{date}}</li>
-    <li>{{creator}}</li>
-    <li>{{sourceId}}</li>-->
   </ul>
   {{/each}}
-  </div>
-  
+  </div> -->
+
   <h2>Books</h2>
   <table border="1">
     <tr>
@@ -101,6 +116,7 @@
     </tr>
   {{/each}}
   </table>
+  </div>
 </template>
 
 <template name="noAccess">

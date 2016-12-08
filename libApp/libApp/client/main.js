@@ -76,8 +76,9 @@ Template.search.helpers({
       } else {
         return Books.find({});
       }
-  }
+    }
 });
+
 
 Handlebars.registerHelper('arrayify',function(obj){
     result = [];
