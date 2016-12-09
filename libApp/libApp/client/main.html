@@ -1,5 +1,8 @@
 <head>
   <title>libApp</title>
+  <!-- load jQuery and tablesorter scripts -->
+  <script type="text/javascript" src="tablesorter.js"></script>
+
 </head>
 
 <body>
@@ -53,23 +56,28 @@
   </div> -->
 
   <h2>Books</h2>
-  <table border="1">
+  <table border="1" id="myTable" class="tablesorter">
+  <link href="tablesorter.css" rel="stylesheet" type="text/css">
+  <thead>
     <tr>
-      <th>Title <i class="fa fa-sort sort_title"></i> </th>
+      <th>Title <!--<i class="fa fa-sort sort_title"></i>--> </th>
       <th>Date</th>
       <th>Author(s)</th>
       <th>Source</th>
       <th>Link</th>
-    </tr>  
-  {{#each arrayify result }}
-   <tr>
-      <td>{{title}}</td>
-      <td>{{date}}</td>
-      <td>{{creator}}</td>
-      <td>{{@TYPE}}</td>
-      <td>{{delivery.availability}}</td>
     </tr>
-  {{/each}}
+  </thead>
+  <tbody>
+    {{#each arrayify result }}
+     <tr>
+        <td>{{title}}</td>
+        <td>{{date}}</td>
+        <td>{{creator}}</td>
+        <td>{{@TYPE}}</td>
+        <td>{{delivery.availability}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
   </table>
   </div>
 </template>

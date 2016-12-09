@@ -59,14 +59,18 @@ Template.search.result = function () {
 Template.search.events({
   "submit #search": function (e) {
       e.preventDefault();
-      Meteor.call('getCurrentTime',function(err, response){
-      //Meteor.call('getCurrentTime',Session.get("searchValue"),function(err, response) {
+      //Meteor.call('getCurrentTime',function(err, response){
+      Meteor.call('getCurrentTime',Session.get("searchValue"),function(err, response) {
         //console.log(response);
         Session.set('serverSimpleResponse', response);
       });
       Session.set("searchValue", $("#searchValue").val());
     }
-});
+}),
+    $(function(){
+      $("#myTable").tablesorter();
+    });
+;
 
 Template.search.helpers({
   books: function() {
