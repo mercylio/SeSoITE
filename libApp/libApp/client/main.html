@@ -10,6 +10,7 @@
   <!--{{> loginButtons}}-->
   <br>
   {{> contacts}}
+
   <br>
   {{> search}}
 </body>
@@ -44,7 +45,7 @@
   <form id="search">
       <input type="text" id="searchValue" placeholder="Search for Resources."><br>
       <button>Search</button><br>
-      <a href="">Advanced Search</a>  
+      {{> advancedsearch}}
   </form>
   <br>
 
@@ -59,6 +60,7 @@
       <th>Author(s)</th>
       <th>Source</th>
       <th>Link</th>
+      <!--<th>Save</th>-->
     </tr>
   </thead>
   <tbody>
@@ -69,6 +71,7 @@
         <td>{{creator}}</td>
         <td>{{@TYPE}}</td>
         <td>{{delivery.availability}}</td>
+        <!--<td><button type="button" class="btn btn-warning">Save</button></td>-->
       </tr>
     {{/each}}
   </tbody>
@@ -76,12 +79,55 @@
   </div>
 </template>
 
+<template name="categories">
+  <select name="categories" form="catform">
+    <option value="Contains">Contains</option>
+    <option value="Is">Is (Exact)</option>
+    <option value="Any">Any</option>
+  </select>
+</template>
+
+<template name="Save">
+  <button type="button" class="btn btn-danger">Save</button>
+</template>
+
 <template name="advancedsearch">
-  <form id="search">
+  <script language="javascript"> 
+      function toggleAdv() {
+        var ele = document.getElementById("toggleAdvSrch")
+        var text = document.getElementById("displayTextAdvSrch");
+        if(ele.style.display == "block") {
+              ele.style.display = "none";
+          text.innerHTML = "Advanced Search";
+          }
+        else {
+          ele.style.display = "block";
+          text.innerHTML = "Close Advanced Search";
+        }
+      }
+      </script>
+      <a id="displayTextAdvSrch" href="javascript:toggleAdv();">Advanced Search</a>
+      <div id="toggleAdvSrch" style="display: none">
+        <form id="advancedSearch" method="get" action="">
+        <input type="text" id="searchFieldOne" placeholder="Search key">
+        {{> categories}}
+        <input type="text" id="searchValueOne" placeholder="Search value"><br>
+        <select name="condition" form="search" id="condition" placeholder="Condition">
+          <option value="AND">AND</option>
+          <option value="OR">OR</option>
+          <option value="NOT">NOT</option>
+        </select><br>
+        <input type="text" id="searchFieldTwo" placeholder="Search key">
+        {{> categories}}
+        <input type="text" id="searchValueTwo" placeholder="Search value"><br>
+        <button>Search</button> <button>Clear</button><br>   
+        </form>
+      </div>
+<!--   <form id="search">
       <input type="text" id="searchValue" placeholder="Any">
       <input type="text" id="searchValue" placeholder="Search for Resources."><br>
       <input type="text" id="searchValue" placeholder="Any">
-      <input type="text" id="searchValue" placeholder="Search for Resources.">
+      <input type="text" id="searchValue" placeholder="Search for Resources."><br>
       <input type="text" id="searchValue" placeholder="Any">
       <input type="text" id="searchValue" placeholder="Search for Resources."><br>
       <button>Search</button> <button>Clear</button><br>   
@@ -90,15 +136,6 @@
   <hr/>
 
   <div class="container">
-<!--   <h2>Book Search Results</h2>
-  {{#each books }}
-  <ul>
-    <li>{{title}}</li>
-    <li>{{author}}</li>
-  </ul>
-  {{/each}}
-  </div> -->
-
   <h2>Books</h2>
   <table border="1">
     <tr>
@@ -118,7 +155,7 @@
     </tr>
   {{/each}}
   </table>
-  </div>
+  </div> -->
 </template>
 
 <template name="noAccess">
@@ -168,7 +205,7 @@
         }
       else {
         ele.style.display = "block";
-        text.innerHTML = "Close";
+        text.innerHTML = "Close Contacts & Opening Hours";
       }
     }
     </script>
