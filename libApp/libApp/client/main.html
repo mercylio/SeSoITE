@@ -7,7 +7,10 @@
 
 <body>
 <h1>Welcome to the Library!</h1>
-  {{> loginButtons}}
+  <!--{{> loginButtons}}-->
+  <br>
+  {{> contacts}}
+  <br>
   {{> search}}
 </body>
 
@@ -32,7 +35,7 @@
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <h1>UNIBZ Library System!</h1>
-       {{> loginButtons}}
+       <!--{{> loginButtons}}-->
     </div>
   </nav>
 </template>
@@ -40,13 +43,12 @@
 <template name="search">
   <form id="search">
       <input type="text" id="searchValue" placeholder="Search for Resources."><br>
-      <button>Search</button> <br>
-      <a href="">Advanced Search</a>    
+      <button>Search</button><br>
+      <a href="">Advanced Search</a>  
   </form>
+  <br>
 
-  <hr/>
  <div class="container">
-
   <h2>Books</h2>
   <table border="1" id="myTable" class="tablesorter">
   <link href="tablesorter.css" rel="stylesheet" type="text/css">
@@ -155,40 +157,49 @@
   {{ books }}
 </template>
 
-<template name="footer">
+<template name="contacts">  
+    <script language="javascript"> 
+    function toggle() {
+      var ele = document.getElementById("toggleText")
+      var text = document.getElementById("displayText");
+      if(ele.style.display == "block") {
+            ele.style.display = "none";
+        text.innerHTML = "Contacts & Opening Hours";
+        }
+      else {
+        ele.style.display = "block";
+        text.innerHTML = "Close";
+      }
+    }
+    </script>
+    <a id="displayText" href="javascript:toggle();"><h2>Contacts & Opening Hours</h2></a>
+    <div id="toggleText" style="display: none">
+      <h3>CONTACT DETAILS</h3>
+      <p>Universitätsplatz 1 - piazza Università, 1</p>
+      <p>Italy - 39100 Bozen-Bolzano</p>
+      <p>T: +39 0471 012300</p>
+      <p>F: +39 0471 012309</p>
+      <p>library@unibz.it</p>
+      
+      <h3>OPENING HOURS - BOZEN-BOLZANO</h3>
+      <p>Monday–Friday  8:00–24:00*</p>
+      <p>Saturday  9:00–20:00**</p>
+      <p>*19:00–24:00 Self Service</p>
+      <p>**17:00–20:00 Self Service</p>
+      <p>Please note: for different opening hours during the summer and Holidays check <a target="_blank" href="http://www.unibz.it/en/library/welcome/calendarbolzano.html">our Calendar Bozen-Bolzano.</a></p>
 
-  <h2>CONTACT DETAILS</h2>
-  <p>Universitätsplatz 1 - piazza Università, 1</p>
-  <p>I - 39100 Bozen-Bolzano</p>
-  <p>T: +39 0471 012300</p>
-  <p>F: +39 0471 012309</p>
-  <p>library@unibz.it</p>
-  
-  <hr>
-  <h1>OPENING HOURS</h1>
-  <h3>BOZEN-BOLZANO</h3>
-  <p>Monday–Friday  8:00–24:00*</p>
-  <p>Saturday  9:00–20:00**</p>
-  <p>*19:00–24:00 Self Service</p>
-  <p>**17:00–20:00 Self Service</p>
+      <h3>OPENING HOURS - BRIXEN-BRESSANONE</h3>
+      <p>Monday - Friday  8:00-18:00</p>
+      <p>Saturday  8:30-13:00</p>
+      <p>Please note: for different opening hours during the summer and Holidays check <a target="_blank" href="http://www.unibz.it/en/library/welcome/calendarbressanone.html">our Calendar Brixen-Bressanone.</a></p>
 
-  <p>Please note: for different opening hours during the summer and Holidays check our Calendar Bozen-Bolzano. </p>
-
-  <hr>
-  <h3>BRIXEN-BRESSANONE</h3>
-  <p>Monday - Friday  8:00-18:00</p>
-  <p>Saturday  8:30-13:00</p>
-
-  <p>Please note: for different opening hours during the summer and Holidays check our Calendar Bozen-Bolzano. </p>
-
-  <hr>
-  <h3>BRUNECK-BRUNICO</h3>
-  <p>Monday - Friday  10:00-19:00</p>
-  <p>Saturday  10:00-12:00*</p>
-  <p>*Self Service</p>
-
-  <p>Please note: for different opening hours during the summer and Holidays check our Calendar Bozen-Bolzano. </p>
-
-  <p>Additional opening hours for Unibz Students</p>
+      <h3>OPENING HOURS - BRUNECK-BRUNICO</h3>
+      <p>Monday - Friday  10:00-19:00</p>
+      <p>Saturday  10:00-12:00*</p>
+      <p>*Self Service</p>
+      <p>Please note: for different opening hours during the summer and Holidays check <a target="_blank" href="http://www.unibz.it/en/library/welcome/calendarbrunico.html">our Calendar Bruneck-Brunico.</a></p>
+      <p>Additional opening hours for Unibz Students</p>
+  </div>
 
 </template>
+
