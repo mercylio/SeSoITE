@@ -6,13 +6,17 @@
 </head>
 
 <body>
-<h1>Welcome to the Library!</h1>
+  <h1>Welcome to the UNIBZ Library!</h1>
   <!--{{> loginButtons}}-->
   <br>
-  {{> contacts}}
-
+  <div>
   <br>
   {{> search}}
+  </div>
+    <div>
+  <br>
+  {{> contacts}}
+  </div>
 </body>
 
 
@@ -33,7 +37,7 @@
 </template>
 
 <template name="navbar">
-  <nav class="navbar navbar-default navbar-fixed-top">
+  <nav class="navbar navbar-default navbar-fixed-top" id="menu">
     <div class="container">
       <h1>UNIBZ Library System!</h1>
        <!--{{> loginButtons}}-->
@@ -42,21 +46,23 @@
 </template>
 
 <template name="search">
+  <div class="center">
   <form id="search">
-      <input type="text" id="searchValue" placeholder="Search for Resources."><br>
-      <button>Search</button><br>
+      <input type="text" name="simpleSearch" id="searchValue" placeholder="Search for Resources."><br>
+      <br><button id="search" class="button">Search</button><br><br>
       {{> advancedsearch}}
   </form>
+  </div>
   <br>
 
  <div class="container">
   <h2>Books</h2>
-  <table border="1" id="myTable" class="tablesorter">
-  <link href="tablesorter.css" rel="stylesheet" type="text/css">
+  <table id="myTable" class="tablesorter">
+  <!--<link href="tablesorter.css" rel="stylesheet" type="text/css">-->
   <thead>
     <tr>
       <th>Title <!--<i class="fa fa-sort sort_title"></i>--> </th>
-      <th>Date</th>
+      <th> Date </th>
       <th>Author(s)</th>
       <th>Source</th>
       <th>Link</th>
@@ -87,8 +93,13 @@
   </select>
 </template>
 
-<template name="Save">
-  <button type="button" class="btn btn-danger">Save</button>
+<template name="scope">
+  <select name="scope" form="scopeform">
+    <option value="Any">Any</option>
+    <option value="In the title">In the title</option>
+    <option value="As Author">As Author/Creator</option>
+    <option value="In Subject">In Subject</option>
+  </select>
 </template>
 
 <template name="advancedsearch">
@@ -107,20 +118,29 @@
       }
       </script>
       <a id="displayTextAdvSrch" href="javascript:toggleAdv();">Advanced Search</a>
-      <div id="toggleAdvSrch" style="display: none">
-        <form id="advancedSearch" method="get" action="">
-        <input type="text" id="searchFieldOne" placeholder="Search key">
+      <div id="toggleAdvSrch" style="display: none"> <br>
+        <form id="advancedSearch" method="get">
+
+        <!--<input type="text" id="searchFieldOne" placeholder="Search key">-->
+        {{> scope}}
         {{> categories}}
+
         <input type="text" id="searchValueOne" placeholder="Search value"><br>
-        <select name="condition" form="search" id="condition" placeholder="Condition">
+
+        <br><select name="condition" form="search" id="condition" placeholder="Condition">
           <option value="AND">AND</option>
           <option value="OR">OR</option>
           <option value="NOT">NOT</option>
         </select><br>
-        <input type="text" id="searchFieldTwo" placeholder="Search key">
+
+        <!--<input type="text" id="searchFieldTwo" placeholder="Search key">-->
+        <br>
+        {{> scope}}
         {{> categories}}
+
         <input type="text" id="searchValueTwo" placeholder="Search value"><br>
-        <button>Search</button> <button>Clear</button><br>   
+
+        <br><button id="adv-search" class="button">Search</button>  <button id="clear" class="button">Clear</button><br>   
         </form>
       </div>
 <!--   <form id="search">
@@ -169,17 +189,6 @@
   </form>
 </template>
 
-<template name="booksContainer">
-  <div class="main">
-    <div class="container">
-      <div class="row">
-        {{> yield "inputBookList"}}
-        {{> yield "books"}}
-      </div>
-    </div>
-  </div>
-</template>
-
 <template name="inputBookList">
   <form class="form"> 
   </form>
@@ -209,6 +218,7 @@
       }
     }
     </script>
+    <div class="centerFooter">
     <a id="displayText" href="javascript:toggle();"><h2>Contacts & Opening Hours</h2></a>
     <div id="toggleText" style="display: none">
       <h3>CONTACT DETAILS</h3>
@@ -236,6 +246,7 @@
       <p>*Self Service</p>
       <p>Please note: for different opening hours during the summer and Holidays check <a target="_blank" href="http://www.unibz.it/en/library/welcome/calendarbrunico.html">our Calendar Bruneck-Brunico.</a></p>
       <p>Additional opening hours for Unibz Students</p>
+  </div>
   </div>
 
 </template>

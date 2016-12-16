@@ -25,3 +25,4 @@ session
 http
 andrei:tablesorter
 accounts-ui
+mrt:nprogress

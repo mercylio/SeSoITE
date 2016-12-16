@@ -6,15 +6,8 @@ Books = new Mongo.Collection("books");
 
 import './main.html';
 
-//ROUTING
 
-
-//Account Configuration
-Accounts.ui.config({
-	passwordSignupFields: "USERNAME_AND_EMAIL"
-});
-
-//Infinite Scroll
+//INFINITE SCROLL
 Session.set("bookListLimit", 10);
 lastScrollTop = 0;
 $(window).scroll(function(event){
@@ -32,24 +25,6 @@ $(window).scroll(function(event){
   }
 });
 
-//BOOKS
-Template.books.rendered = function() {
-    Session.setDefault('books', [
-      {title: "To Kill a Mockingbird", value: "To Kill a Mockingbird", author: "Harper Lee"},
-      {title: "1984", value:  "1984", author: "George Orwell"},
-      {title: "The Lord of the Rings", value: "The Lord of the Rings", author: "J. R. R. Tolkien"},
-      {title: "The Catcher in the Rye", value: "The Catcher in the Rye", author: "J. D. Salinger"},
-      {title: "The Great Gatsby", value: "The Great Gatsby", author: "F. Scott Fitzgerald"}
-    ]);
-  };
-
-
-Template.books.helpers({
-  books:function(){
-    return Session.get('books');
-  }
-});
-
 Template.search.result = function () {
   return Session.get('serverSimpleResponse');
 };
@@ -59,12 +34,17 @@ Template.search.result = function () {
 Template.search.events({
   "submit #search": function (e) {
       e.preventDefault();
+      //NProgress.start();
       //Meteor.call('getCurrentTime',function(err, response){
       Meteor.call('getCurrentTime',Session.get("searchValue"),function(err, response) {
         //console.log(response);
+        //NProgress.inc();
         Session.set('serverSimpleResponse', response);
       });
+      //NProgress.inc();
       Session.set("searchValue", $("#searchValue").val());
+      //NProgress.done();
+      //NProgress.remove();
     }
 }),
     $(function(){
@@ -73,19 +53,41 @@ Template.search.events({
 ;
 
 Template.search.helpers({
-  books: function() {
-    Meteor.subscribe("search", Session.get("searchValue"));
-    if (Session.get("searchValue")) {
-        return Books.find({}, { sort: [["score", "desc"]] });  
-      } else {
-        return Books.find({});
-      }
-    }
-});
 
+});
 
 Handlebars.registerHelper('arrayify',function(obj){
     result = [];
     for (var key in obj) result.push(obj[key]);
     return result;
+});
+
+//ADVANCED SEARCH
+Template.advancedsearch.events({
+  "submit #adv-search": function (e) {
+      e.preventDefault();
+      //NProgress.start();
+      //Meteor.call('getAdvancedResults',function(err, response){
+      Meteor.call('getAdvancedResults',Session.get("searchFieldOne"),function(err, response) {
+        //console.log(response);
+        Session.set('serverSimpleResponse', response);
+      });
+      Session.set("searchFieldOne", $("#searchFieldOne").val());
+      //NProgress.end();
+    }
+}),
+    $(function(){
+      $("#myTable").tablesorter();
+    });
+;
+
+Template.advancedsearch.helpers({
+  books: function() {
+    Meteor.subscribe("adv-search", Session.get("searchFieldOne"));
+    if (Session.get("searchFieldOne")) {
+        return Books.find({}, { sort: [["score", "desc"]] });  
+      } else {
+        return Books.find({});
+      }
+    }
 });
