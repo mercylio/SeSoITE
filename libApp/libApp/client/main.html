@@ -9,6 +9,7 @@
   <h1>Welcome to the UNIBZ Library!</h1>
   <!--{{> loginButtons}}-->
   <br>
+  {{> navbar}}
   <div>
   <br>
   {{> search}}
@@ -56,13 +57,13 @@
   <br>
 
  <div class="container">
-  <h2>Books</h2>
+  <h1>Books</h1>
   <table id="myTable" class="tablesorter">
   <!--<link href="tablesorter.css" rel="stylesheet" type="text/css">-->
   <thead>
     <tr>
       <th>Title <!--<i class="fa fa-sort sort_title"></i>--> </th>
-      <th> Date </th>
+      <th>Date </th>
       <th>Author(s)</th>
       <th>Source</th>
       <th>Link</th>
@@ -85,20 +86,37 @@
   </div>
 </template>
 
-<template name="categories">
-  <select name="categories" form="catform">
-    <option value="Contains">Contains</option>
-    <option value="Is">Is (Exact)</option>
-    <option value="Any">Any</option>
+<template name="scopeOne">
+  <select name="scopeOne" form="scopeform" id="scopeOne">
+    <option value="any">Any</option>
+    <option value="title">In the title</option>
+    <option value="author">As Author/Creator</option>
+    <option value="subject">In Subject</option>
   </select>
 </template>
 
-<template name="scope">
-  <select name="scope" form="scopeform">
-    <option value="Any">Any</option>
-    <option value="In the title">In the title</option>
-    <option value="As Author">As Author/Creator</option>
-    <option value="In Subject">In Subject</option>
+<template name="scopeTwo">
+  <select name="scopeTwo" form="scopeTwo" id="scopeTwo">
+    <option value="any">Any</option>
+    <option value="title">In the title</option>
+    <option value="author">As Author/Creator</option>
+    <option value="subject">In Subject</option>
+  </select>
+</template>
+
+<template name="categoryOne">
+  <select name="categoryOne" form="categoryOne" id="categoryOne">
+    <option value="contains">Contains</option>
+    <option value="exact">Is (Exact)</option>
+    <option value="any">Any</option>
+  </select>
+</template>
+
+<template name="categoryTwo">
+  <select name="categoryTwo" form="categoryTwo" id="categoryTwo">
+    <option value="contains">Contains</option>
+    <option value="exact">Is (Exact)</option>
+    <option value="any">Any</option>
   </select>
 </template>
 
@@ -121,9 +139,8 @@
       <div id="toggleAdvSrch" style="display: none"> <br>
         <form id="advancedSearch" method="get">
 
-        <!--<input type="text" id="searchFieldOne" placeholder="Search key">-->
-        {{> scope}}
-        {{> categories}}
+        {{> scopeOne}}
+        {{> categoryOne}}
 
         <input type="text" id="searchValueOne" placeholder="Search value"><br>
 
@@ -133,75 +150,18 @@
           <option value="NOT">NOT</option>
         </select><br>
 
-        <!--<input type="text" id="searchFieldTwo" placeholder="Search key">-->
         <br>
-        {{> scope}}
-        {{> categories}}
+        {{> scopeTwo}}
+        {{> categoryTwo}}
 
         <input type="text" id="searchValueTwo" placeholder="Search value"><br>
 
-        <br><button id="adv-search" class="button">Search</button>  <button id="clear" class="button">Clear</button><br>   
+        <br><button id="adv-search" class="button">Search</button>
+        <button id="clear" class="button">Clear</button><br>   
         </form>
       </div>
-<!--   <form id="search">
-      <input type="text" id="searchValue" placeholder="Any">
-      <input type="text" id="searchValue" placeholder="Search for Resources."><br>
-      <input type="text" id="searchValue" placeholder="Any">
-      <input type="text" id="searchValue" placeholder="Search for Resources."><br>
-      <input type="text" id="searchValue" placeholder="Any">
-      <input type="text" id="searchValue" placeholder="Search for Resources."><br>
-      <button>Search</button> <button>Clear</button><br>   
-  </form>
-
-  <hr/>
-
-  <div class="container">
-  <h2>Books</h2>
-  <table border="1">
-    <tr>
-      <th>Title</th>
-      <th>Date</th>
-      <th>Author(s)</th>
-      <th>Source</th>
-      <th>Link</th>
-    </tr>  
-  {{#each arrayify result }}
-   <tr>
-      <td>{{title}}</td>
-      <td>{{date}}</td>
-      <td>{{creator}}</td>
-      <td>{{@TYPE}}</td>
-      <td>{{delivery.availability}}</td>
-    </tr>
-  {{/each}}
-  </table>
-  </div> -->
 </template>
 
-<template name="noAccess">
-  <form class="form">
-    <div class="col-xs-8 col-md-10">
-      <input id="not-allowed" type="text" placeholder="Sign up / sign in to access" disabled>
-    </div>
-    <div class="col-xs-4 col-md-2">
-      <button class="btn btn-warning" id="btnnotloggedin" data-dismiss="modal" disabled>Search on Login</button>
-    </div>     
-  </form>
-</template>
-
-<template name="inputBookList">
-  <form class="form"> 
-  </form>
-</template>
-
-<template name="books">
-  <!-- <div class="container">
-    <h2>{{book_alt}}</h2>
-    <a href="/books"><img class="single-book" src="/{{book_img}}"/></a>
-  </div> -->
-  <h3>Here are your books:</h3>
-  {{ books }}
-</template>
 
 <template name="contacts">  
     <script language="javascript"> 

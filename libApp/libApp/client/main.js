@@ -29,6 +29,10 @@ Template.search.result = function () {
   return Session.get('serverSimpleResponse');
 };
 
+Template.advancedsearch.result = function () {
+  return Session.get('serverSimpleResponse');
+};
+
 
 //SEARCH
 Template.search.events({
@@ -36,7 +40,7 @@ Template.search.events({
       e.preventDefault();
       //NProgress.start();
       //Meteor.call('getCurrentTime',function(err, response){
-      Meteor.call('getCurrentTime',Session.get("searchValue"),function(err, response) {
+      Meteor.call('getSimpleSearch',Session.get("searchValue"),function(err, response) {
         //console.log(response);
         //NProgress.inc();
         Session.set('serverSimpleResponse', response);
@@ -68,26 +72,38 @@ Template.advancedsearch.events({
       e.preventDefault();
       //NProgress.start();
       //Meteor.call('getAdvancedResults',function(err, response){
-      Meteor.call('getAdvancedResults',Session.get("searchFieldOne"),function(err, response) {
+      
+      var scopeOne = $("#scopeOne option:selected").val();
+      var scopeTwo = $("#scopeTwo option:selected").val();
+      var categoryOne = $("#categoryOne option:selected").val();
+      var categoryTwo = $("#categoryTwo option:selected").val();
+      var condition = $("#condition option:selected").val();
+      var searchValueOne = $("#searchValueOne").val();
+      var searchValueTwo = $("#searchValueTwo").val();
+
+
+
+      Meteor.call('getAdvancedResults',Session.get("scopeOne","categoryOne","searchValueOne"),function(err, response) {
         //console.log(response);
         Session.set('serverSimpleResponse', response);
       });
-      Session.set("searchFieldOne", $("#searchFieldOne").val());
+      Session.set("scopeOne", $("#scopeOne").val(), "categoryOne", $("#categoryOne").val(), "searchValueOne", $("#searchValueOne").val());
       //NProgress.end();
     }
-}),
+})
+,
     $(function(){
       $("#myTable").tablesorter();
     });
 ;
 
 Template.advancedsearch.helpers({
-  books: function() {
+/*  books: function() {
     Meteor.subscribe("adv-search", Session.get("searchFieldOne"));
     if (Session.get("searchFieldOne")) {
         return Books.find({}, { sort: [["score", "desc"]] });  
       } else {
         return Books.find({});
       }
-    }
+    }*/
 });
