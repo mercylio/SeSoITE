@@ -38,17 +38,15 @@ Template.advancedsearch.result = function () {
 Template.search.events({
   "submit #search": function (e) {
       e.preventDefault();
-      //NProgress.start();
-      //Meteor.call('getCurrentTime',function(err, response){
+      NProgress.start();
+
+      //Meteor.call('getCurrentTime',function(err, response){ //IMPORTANT
       Meteor.call('getSimpleSearch',Session.get("searchValue"),function(err, response) {
-        //console.log(response);
-        //NProgress.inc();
         Session.set('serverSimpleResponse', response);
+        NProgress.done();
       });
-      //NProgress.inc();
       Session.set("searchValue", $("#searchValue").val());
-      //NProgress.done();
-      //NProgress.remove();
+      NProgress.remove();
     }
 }),
     $(function(){
@@ -90,8 +88,7 @@ Template.advancedsearch.events({
       Session.set("scopeOne", $("#scopeOne").val(), "categoryOne", $("#categoryOne").val(), "searchValueOne", $("#searchValueOne").val());
       //NProgress.end();
     }
-})
-,
+}),
     $(function(){
       $("#myTable").tablesorter();
     });

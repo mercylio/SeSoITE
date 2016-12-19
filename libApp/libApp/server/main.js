@@ -1,8 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 
 Meteor.methods({
-	//getCurrentTime: function () {
-	//	console.log('on server, getCurrentTime called');
 	
 	getSimpleSearch: function (searchValue) {
 		console.log("Searching for ", searchValue);
