@@ -7,8 +7,9 @@ Meteor.methods({
 		
 		var convertAsyncToSync  = Meteor.wrapAsync( HTTP.get ),
         result = convertAsyncToSync( 'https://api-na.hosted.exlibrisgroup.com/primo/v1/pnxs?vid=UNIBZ&scope=All&q=any,contains,'+searchValue+'&apikey=l7xx53f22519810d4f56a21caceb0fc95de4', {} );
-    //    result = convertAsyncToSync( 'https://api-na.hosted.exlibrisgroup.com/primo/v1/pnxs?vid=UNIBZ&scope=All&q=any,contains,Hello&apikey=l7xx53f22519810d4f56a21caceb0fc95de4', {} );
-    //    console.log(result.data.docs[0]);
+	    //PREVIOUS EXAMPLE
+	    //    result = convertAsyncToSync( 'https://api-na.hosted.exlibrisgroup.com/primo/v1/pnxs?vid=UNIBZ&scope=All&q=any,contains,Hello&apikey=l7xx53f22519810d4f56a21caceb0fc95de4', {} );
+	    //    console.log(result.data.docs[0]);
     	console.log("Simple Search Complete");
         return result.data.docs;
 	},
@@ -18,8 +19,9 @@ Meteor.methods({
 		 
 		var convertAsyncToSync  = Meteor.wrapAsync( HTTP.get ),
         result = convertAsyncToSync( 'https://api-na.hosted.exlibrisgroup.com/primo/v1/pnxs?vid=UNIBZ&scope=All&q='+scopeOne+/*any*/','+categoryOne+/*contains*/','+searchValueOne+/*'&boolOperator='+condition+','+scopeTwo+','+categoryTwo+','+searchValueTwo+*/'&apikey=l7xx53f22519810d4f56a21caceb0fc95de4', {} );
-    //    result = convertAsyncToSync( 'https://api-na.hosted.exlibrisgroup.com/primo/v1/pnxs?vid=UNIBZ&scope=All&q=any,contains,Hello&apikey=l7xx53f22519810d4f56a21caceb0fc95de4', {} );
-    //    console.log(result.data.docs[0]);
+        //PREVIOUS EXAMPLE
+	    //    result = convertAsyncToSync( 'https://api-na.hosted.exlibrisgroup.com/primo/v1/pnxs?vid=UNIBZ&scope=All&q=any,contains,Hello&apikey=l7xx53f22519810d4f56a21caceb0fc95de4', {} );
+	    //    console.log(result.data.docs[0]);
     	console.log("Advanced Search Complete");
         return result.data.docs;
 	}
