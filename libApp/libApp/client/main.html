@@ -2,12 +2,10 @@
   <title>libApp</title>
   <!-- load jQuery and tablesorter scripts -->
   <script type="text/javascript" src="tablesorter.js"></script>
-
 </head>
 
 <body>
   <h1>Welcome to the UNIBZ Library!</h1>
-  <!--{{> loginButtons}}-->
   <br>
   {{> navbar}}
   <div>
@@ -19,14 +17,6 @@
   {{> contacts}}
   </div>
 </body>
-
-
-<!--TEMPLATES-->
-
-<!-- <template name="ApplicationLayout">
-  {{> yield "navbar"}}
-  {{> yield "mainContainer"}}
-</template> -->
 
 <template name="welcome">
   <div class="container">
@@ -41,7 +31,6 @@
   <nav class="navbar navbar-default navbar-fixed-top" id="menu">
     <div class="container">
       <h1>UNIBZ Library System!</h1>
-       <!--{{> loginButtons}}-->
     </div>
   </nav>
 </template>
@@ -59,10 +48,9 @@
  <div class="container">
   <h1>Books</h1>
   <table id="myTable" class="tablesorter">
-  <!--<link href="tablesorter.css" rel="stylesheet" type="text/css">-->
   <thead>
     <tr>
-      <th>Title <!--<i class="fa fa-sort sort_title"></i>--> </th>
+      <th>Title</th>
       <th>Date </th>
       <th>Author(s)</th>
       <th>Source</th>
@@ -78,7 +66,6 @@
         <td>{{creator}}</td>
         <td>{{@TYPE}}</td>
         <td>{{delivery.availability}}</td>
-        <!--<td><button type="button" class="btn btn-warning">Save</button></td>-->
       </tr>
     {{/each}}
   </tbody>
@@ -182,11 +169,11 @@
     <a id="displayText" href="javascript:toggle();"><h2>Contacts & Opening Hours</h2></a>
     <div id="toggleText" style="display: none">
       <h3>CONTACT DETAILS</h3>
-      <p>Universitätsplatz 1 - piazza Università, 1</p>
+      <p>Universit&auml;tsplatz 1 - piazza Universit&agrave;, 1</p>
       <p>Italy - 39100 Bozen-Bolzano</p>
       <p>T: +39 0471 012300</p>
       <p>F: +39 0471 012309</p>
-      <p>library@unibz.it</p>
+      <p><a href="mailto:library@unibz.it">library@unibz.it</a></p>
       
       <h3>OPENING HOURS - BOZEN-BOLZANO</h3>
       <p>Monday–Friday  8:00–24:00*</p>
